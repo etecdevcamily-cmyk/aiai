@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Uma pergunta especial 💜</title>
+  <title>Mensagem 💜</title>
 
   <style>
     * {
@@ -71,8 +71,9 @@
       transform: scale(1.06);
     }
 
+    /* O botão começa ao lado do "Sim" */
     #nao {
-      position: fixed;
+      position: relative;
       z-index: 10;
     }
   </style>
@@ -80,14 +81,13 @@
 
 <body>
   <main class="card">
-    <!-- Substitua pelo endereço da foto de vocês -->
     <img
       class="foto"
-      src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=500&q=80"
+      src="https://cataas.com/cat?width=500&height=500"
       alt="Gatinho fofo"
     />
 
-    <h1>Você aceita ser meu amor para sempre? 💜</h1>
+    <h1>Oi vd, quer ser meu amor? 💜</h1>
 
     <div class="botoes">
       <button onclick="aceitou()">Sim 💜</button>
@@ -99,6 +99,9 @@
     const botaoNao = document.getElementById("nao");
 
     function fugir() {
+      /* Só aqui ele sai da posição ao lado do botão Sim */
+      botaoNao.style.position = "fixed";
+
       const larguraBotao = botaoNao.offsetWidth;
       const alturaBotao = botaoNao.offsetHeight;
 
@@ -112,7 +115,10 @@
       botaoNao.style.top = novoY + "px";
     }
 
-    botaoNao.addEventListener("mouseover", fugir);
+    /* Computador */
+    botaoNao.addEventListener("mouseenter", fugir);
+
+    /* Celular */
     botaoNao.addEventListener("touchstart", function (evento) {
       evento.preventDefault();
       fugir();
